@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+{% block start %}
+
+<h3>Show Peoples Data</h3>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Can Vote?</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for people in peoples %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.age}}</td>
+            <td>
+                {% if people.age > 18 %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+</div>
+
+<a href="/">Home</a>
+|
+<a href="/about">About</a>
+
+{% endblock %}

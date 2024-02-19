@@ -12,7 +12,13 @@ def home(request):
         {'name' : 'Name6', 'age': 60},
         {'name' : 'Name7', 'age': 70}
     ]
-    return render(request, "index.html", context={'peoples':peoples})
+    return render(request, "home/index.html", context={'peoples':peoples})
+
+def about(request):
+    return render(request, "home/about.html")
+
+def contact(request):
+    return render(request, "home/contact.html")
 
 def success_page(request):
     return HttpResponse("Success page")
