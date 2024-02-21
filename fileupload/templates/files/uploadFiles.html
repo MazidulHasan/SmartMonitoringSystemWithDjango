@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+{% block start %}
+
+<div class="container mt-5" >
+    <form class="col-6 mx-auto card p-3 shadow-lg" novalidate method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>Upload File</h3>
+        <br>
+          <div class="mb-3">
+            <label>File</label>
+            <input class="form-control" required name="file_name" type="file">
+          </div>
+          <div class="mb-3">
+            <label>File Location</label>
+            <input type="text" name="file_location" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>camera_number</label>
+            <input type="number" name="camera_number" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Record Date</label>
+            <input type="date" name="video_record_time" class="form-control" required>
+          </div> 
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
+    
+</div>
+
+
+
+{% endblock %}
