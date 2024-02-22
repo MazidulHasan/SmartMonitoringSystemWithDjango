@@ -3,6 +3,8 @@ from .models import *
 import os
 from django.conf import settings
 from pathlib import Path
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def uploadfiles(request):
     if request.method == "POST":
@@ -57,3 +59,36 @@ def delete_file(request,id):
     else:
         print("File not found")
     return redirect('/uploadedFileList/')
+
+# D:/DjangoProjects/SmartMonitoringSystem/core/public/static/videos
+
+@csrf_exempt
+def upload_via_api(request):
+    if request.method == "POST":
+        data = request.POST
+        uploaded_file = request.FILES.get('file_name')
+        file_from = data.get('file_location')
+        camera_number = data.get('camera_number')
+        video_record_time = data.get('video_record_time')
+        
+        file_path = None  # Define file_path with a default value
+        
+        # Save the uploaded file to your local directory
+        if uploaded_file:
+            file_path = os.path.join('D:/DjangoProjects/SmartMonitoringSystem/core/public/static/videos/', uploaded_file.name)
+            with open(file_path, 'wb') as file:
+                for chunk in uploaded_file.chunks():
+                    file.write(chunk)
+        newFileName = 'videos/'+ uploaded_file.name
+        # Save the file details to the database
+        fileupload.objects.create(
+            file_name=newFileName if newFileName else "",  # Save the file path to the database
+            file_from=file_from,
+            camera_number=camera_number,
+            video_record_time=video_record_time
+        )
+
+        # Return a success response
+        return JsonResponse({'message': 'File uploaded successfully'})
+
+    return JsonResponse({'message': 'Invalid request method'}, status=405)

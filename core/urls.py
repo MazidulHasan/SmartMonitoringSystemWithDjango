@@ -31,6 +31,7 @@ urlpatterns = [
     path('uploadedFileList/', uploadedFileList ,name="uploadedFileList"),
     path('uploadfiles/', uploadfiles ,name="uploadfiles"),
     path('delete-file/<id>/', delete_file ,name="delete_file"),
+    path('api-upload/', upload_via_api ,name="upload_via_api"),
 
     path('admin/', admin.site.urls),
 ]
