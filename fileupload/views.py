@@ -60,8 +60,6 @@ def delete_file(request,id):
         print("File not found")
     return redirect('/uploadedFileList/')
 
-# D:/DjangoProjects/SmartMonitoringSystem/core/public/static/videos
-
 @csrf_exempt
 def upload_via_api(request):
     if request.method == "POST":
@@ -75,7 +73,9 @@ def upload_via_api(request):
         
         # Save the uploaded file to your local directory
         if uploaded_file:
-            file_path = os.path.join('D:/DjangoProjects/SmartMonitoringSystem/core/public/static/videos/', uploaded_file.name)
+            additional_directories = ['public', 'static','videos']
+            file_path = os.path.join(settings.BASE_DIR, *additional_directories, uploaded_file.name)
+            # file_path = os.path.join('D:/DjangoProjects/SmartMonitoringSystem/core/public/static/videos/', uploaded_file.name)
             with open(file_path, 'wb') as file:
                 for chunk in uploaded_file.chunks():
                     file.write(chunk)
