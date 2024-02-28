@@ -2,14 +2,14 @@ import os
 import requests
 
 # Django server URL
-SERVER_URL = 'http://www.sentiant.net/api-upload/'
+SERVER_URL = 'http://192.168.50.92:8000/api-upload/'
 
 # Directory containing video files
-VIDEO_DIRECTORY = '/home/pi/Desktop/VataProject/videos'
+VIDEO_DIRECTORY = '/home/pi/Videos/vataVidoes'
 
 # Iterate through files in the directory
 for filename in os.listdir(VIDEO_DIRECTORY):
-    if filename.endswith('.avi'):  
+    if filename.endswith('.mp4'):  
         filepath = os.path.join(VIDEO_DIRECTORY, filename)
          
         # Send file to Django server

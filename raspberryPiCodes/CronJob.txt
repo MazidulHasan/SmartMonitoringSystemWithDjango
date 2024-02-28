@@ -1,0 +1,5 @@
+# Run videoUploadFromFile.py every day at 1 am and 4 am
+0 1,4 * * * /usr/bin/python3 /path/to/videoUploadFromFile.py
+
+# Run VideoCaptureFromIpCam.py every 20 minutes
+*/20 * * * * /usr/bin/python3 /path/to/VideoCaptureFromIpCam.py
